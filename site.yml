@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    lineinfile_search_path: /usr/local/website/script/
+    lineinfile_search_name:
+      - "*deploy.sh"
+      - "*rollback.sh"
+      - "*emergency.sh"
+    lineinfile_rewrite_rules:
+      - { "regexp": "^Server1=" , "line": "Server1=zbx1-vip" }
+      - { "regexp": "^Server2=" , "line": "Server2=zbx2-vip" }
+      - { "regexp": "^Server3=" , "line": "Server3=zbx3-vip" }
+  roles:
+    - ansible-loop_control_sample
+

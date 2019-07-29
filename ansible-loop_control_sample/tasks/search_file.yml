@@ -1,0 +1,8 @@
+---
+
+- find:
+    paths: "{{ lineinfile_search_path }}"
+    file_type: file
+    recurse: yes
+    patterns: "{{ lineinfile_search_name | list }}"
+  register: find_result

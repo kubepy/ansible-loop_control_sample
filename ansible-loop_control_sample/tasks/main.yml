@@ -1,0 +1,12 @@
+---
+# tasks file for ansible-loop_control_sample
+
+- include_tasks: search_file.yml
+
+- debug:
+    msg: "{{ find_result.files | map(attribute='path') | list }}"
+
+- include_tasks: lineinfile_file.yml
+  with_items: "{{ find_result.files | map(attribute='path') | list }}"
+  loop_control:
+    loop_var: find_result_item
